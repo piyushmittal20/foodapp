@@ -10,7 +10,7 @@ connectDb();
 const app = express();
 
 app.use('/', (req, res) => {
-    res.send("Hello!!");
+    res.send("Hello World!!");
 })
 
 const PORT = process.env.PORT || 5000;
