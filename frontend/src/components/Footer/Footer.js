@@ -3,7 +3,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Button from '@material-ui/core/Button';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import './Footer.css'
 
 function Footer(props) {
@@ -37,7 +37,8 @@ function Footer(props) {
             <div className="social_links">
             <LinkedInIcon/>
             <GitHubIcon/>
-            <MailOutlineIcon/>
+            <InstagramIcon/>
+            <TwitterIcon/>
             </div>
             
             
