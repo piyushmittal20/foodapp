@@ -10,6 +10,10 @@
     background:#222e3a;
 }
 
+.home_footer * hr{
+    margin-bottom: 0.5rem;
+}
+
 @media screen and (max-width: 680px)
 {
     .home_footer
@@ -56,7 +60,7 @@
 .home_footer .addrestaurant_button
 {
     padding: 0.5rem;
-    background: #ff1058;
+    background: #ff1057;
     color: white;
     margin-top: 0.2rem;
     border-radius: 6px;
@@ -66,13 +70,13 @@
 }
 .home_footer .addrestaurant_button:hover
 {
-    background: #ff1058;
+    background: #ff1057;
 }
 
 .home_footer .social_links> *
 {
 
-    padding: 0.5rem;
+    margin: 0.5rem;
     padding-left: 0;
     color: rgb(250, 223, 223);
     cursor: pointer;
@@ -80,6 +84,6 @@
 }
 .first_letter_effect
 {
-    color: #ff1058;
+    color: #ff1057;
     
 }

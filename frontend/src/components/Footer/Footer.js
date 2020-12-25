@@ -39,11 +39,7 @@ function Footer(props) {
             <GitHubIcon/>
             <MailOutlineIcon/>
             </div>
-            <div className="social_links">
-            <LinkedInIcon/>
-            <GitHubIcon/>
-            <MailOutlineIcon/>
-            </div>
+            
             
             </div>
 
