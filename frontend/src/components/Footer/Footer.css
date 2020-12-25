@@ -1,0 +1,85 @@
+
+.home_footer
+{
+    display:flex ;
+    flex-direction:row;
+    height:15rem;
+    left:0;
+    bottom:0;
+    justify-content:center; 
+    background:#222e3a;
+}
+
+@media screen and (max-width: 680px)
+{
+    .home_footer
+    {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+.home_footer > div
+{
+    padding: 2rem;
+   
+
+}
+
+.home_footer > div >h2
+{
+    color: white;
+}
+
+.home_footer > div >p
+{
+    color: white;
+}
+
+.home_footer > div > hr
+{
+    width: 5rem;
+}
+.home_footer .quick_links
+{
+ list-style: none;   
+
+}
+
+.home_footer .quick_links > li{
+    color: white;
+}
+.home_footer .quick_links > li:hover{
+    color: #ecc237;
+}
+.home_footer .addrestaurant_button
+{
+    padding: 0.5rem;
+    background: #ff1058;
+    color: white;
+    margin-top: 0.2rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.7rem;
+
+}
+.home_footer .addrestaurant_button:hover
+{
+    background: #ff1058;
+}
+
+.home_footer .social_links> *
+{
+
+    padding: 0.5rem;
+    padding-left: 0;
+    color: rgb(250, 223, 223);
+    cursor: pointer;
+
+}
+.first_letter_effect
+{
+    color: #ff1058;
+    
+}
