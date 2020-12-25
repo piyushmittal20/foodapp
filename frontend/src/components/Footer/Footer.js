@@ -13,7 +13,7 @@ function Footer(props) {
 
                 <h2><strong className="first_letter_effect">F</strong>ood App</h2>
                 <hr></hr>
-                <p>About the company , stuff like this...</p>
+                <p>About the company , stuff like this....</p>
             </div>
 
             <div>
@@ -39,11 +39,7 @@ function Footer(props) {
             <GitHubIcon/>
             <MailOutlineIcon/>
             </div>
-            <div className="social_links">
-            <LinkedInIcon/>
-            <GitHubIcon/>
-            <MailOutlineIcon/>
-            </div>
+            
             
             </div>
 
