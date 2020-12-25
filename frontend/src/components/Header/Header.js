@@ -3,12 +3,23 @@ import './Header.css';
 const Header = () => {
 
     const [clicked, setClicked] = useState(false);
+    const [navbar, setNavbar] = useState(false);
 
     const handleClick = () => setClicked(!clicked);
 
+    const changeBackground = () => {
+        if (window.scrollY >= 80) {
+            setNavbar(true)
+        } else {
+            setNavbar(false)
+        }
+    }
+
+    window.addEventListener('scroll', changeBackground);
+
     return (
         <>
-            <div className='header'>
+            <div className={navbar ? 'header sticky' : 'header'}>
                 <a href="#" className='logo'>
                     <span>F</span>oodApp
                 </a>

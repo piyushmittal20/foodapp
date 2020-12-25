@@ -1,8 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 1000px;
 }
 
 .root {
@@ -22,6 +28,7 @@
 }
 
 .root .content h2 {
+  font-family: "Caveat", cursive;
   font-size: 4.5em;
   color: #fff;
   transition: 0.7s;
@@ -62,11 +69,21 @@
   transition: 0.5s;
 }
 
+.header.sticky {
+  background: #fff;
+  padding: 10px 100px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
 .logo {
   color: #fff;
   font-weight: 700;
   font-size: 2em;
   text-decoration: none;
+}
+
+.header.sticky .logo {
+  color: #111;
 }
 
 .logo span {
@@ -91,7 +108,15 @@
   transition: 0.5s;
 }
 
+.header.sticky .navigation li a {
+  color: #111;
+}
+
 .navigation li a:hover {
+  color: #ff1057;
+}
+
+.header.sticky .navigation li a:hover {
   color: #ff1057;
 }
 
@@ -107,8 +132,16 @@
   display: none;
 }
 
+.header.sticky .fa-bars,
+.header.sticky .fa-times {
+  color: #111;
+}
+
 @media (max-width: 991px) {
   .header {
+    padding: 10px 20px;
+  }
+  .header.sticky {
     padding: 10px 20px;
   }
   .root .content h2 {
@@ -138,7 +171,6 @@
     margin-left: 0;
     margin-bottom: 20px;
     padding: 5px 10px;
-    width: 200px;
     text-align: center;
   }
   .navigation li a {
@@ -146,12 +178,12 @@
     color: #111;
     padding: 10px 20px;
     font-size: 1.8em;
+    width: 200px;
     transition: 0.5s;
+    border: 1px solid #ff1057;
   }
   .navigation li a:hover {
     letter-spacing: 3px;
-    color: #fff;
-    background-color: #ff1057;
   }
   .fa-bars {
     display: inline;
