@@ -24,6 +24,7 @@
 .root .content h2 {
   font-size: 4.5em;
   color: #fff;
+  transition: 0.7s;
 }
 
 .root .content p {
@@ -69,6 +70,7 @@
 }
 
 .logo span {
+  font-size: 1.5em;
   color: #ff1057;
 }
 
@@ -91,4 +93,70 @@
 
 .navigation li a:hover {
   color: #ff1057;
+}
+
+.fa-bars {
+  color: #fff;
+  display: none;
+  font-size: 2em;
+}
+
+.fa-times {
+  color: #fff;
+  font-size: 1.8em;
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .header {
+    padding: 10px 20px;
+  }
+  .root .content h2 {
+    font-size: 2.5em;
+    color: #fff;
+  }
+  .root .content p {
+    font-size: 1em;
+    color: #fff;
+  }
+  .navigation {
+    display: none;
+  }
+  .navigation.active {
+    width: 100%;
+    height: calc(100% - 68px);
+    position: fixed;
+    top: 68px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+  }
+  .navigation li {
+    margin-left: 0;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    width: 200px;
+    text-align: center;
+  }
+  .navigation li a {
+    text-decoration: none;
+    color: #111;
+    padding: 10px 20px;
+    font-size: 1.8em;
+    transition: 0.5s;
+  }
+  .navigation li a:hover {
+    letter-spacing: 3px;
+    color: #fff;
+    background-color: #ff1057;
+  }
+  .fa-bars {
+    display: inline;
+  }
+  .fa-times {
+    display: inline;
+  }
 }
