@@ -13,7 +13,6 @@ const SearchBar = () => {
                         className='input'
                         placeholder="Search Your favorite Restaurant..."
                         inputProps={{ 'aria-label': 'search your favorite restaurant' }}
-                        onC
                     />
                     <IconButton type="submit" className='iconButton' aria-label="search">
                         <SearchIcon className='search-icon' />
