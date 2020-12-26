@@ -1,0 +1,40 @@
+.search_bar {
+  margin: 80px auto;
+}
+
+.textField {
+  margin: 10px auto;
+  padding: 2px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 650px;
+  box-shadow: 0px 2px 1px -1px rgb(234, 0, 255), 0px 1px 1px 0px rgb(255, 1, 87),
+    0px 1px 3px 0px rgb(255, 1, 87) !important;
+  transition: 0.5s;
+}
+
+.input {
+  flex: 1;
+  padding-left: 5px;
+}
+
+.iconButton {
+  padding: 10;
+}
+
+.search-icon {
+  color: #ff10df;
+}
+
+@media screen and (max-width: 800px) {
+  .textField {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .textField {
+    width: 300px;
+  }
+}
