@@ -1,21 +1,36 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
+const deliveryInfo = {
+    street: String,
+    locality: String,
+    aptName: String,
+    zip: String,
+    phoneNo: Number
+};
 
 const userSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    email: {
-        type: String,
+    
+    address:deliveryInfo,
+
+account: { type: Schema.Types.ObjectId, required: true, ref: "Account" },
+cart: {
+    items: [
+    {
+    _id: false,
+    itemId: {
+        type: Schema.Types.ObjectId,
+        ref: "Item",
         required: true,
-        unique: true
     },
-    password: {
-        type: String,
-        required: true,
+    quantity: { type: Number, required: true },
     },
+],
+},
 },
     {
         timestamps: true
