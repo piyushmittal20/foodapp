@@ -39,11 +39,6 @@ const sellerSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'Item'
-    },
-    isSeller: {
-        type: Boolean,
-        required: true,
-        default: true
     }
 },
     {
