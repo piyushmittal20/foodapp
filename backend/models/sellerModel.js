@@ -19,15 +19,6 @@ const sellerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
     imageUrl: {
         type: String,
         required: true
@@ -35,9 +26,9 @@ const sellerSchema = new mongoose.Schema({
     address: addressInfo,
     minOrderAmount: Number,
     costForOne: Number,
+    account: { type: Schema.Types.ObjectId, required: true, ref: "Account" },
     items: {
         type: Schema.Types.ObjectId,
-        required: true,
         ref: 'Item'
     }
 },
