@@ -1,18 +1,11 @@
-import express from 'express';
-import { body } from 'express-validator';
-import { verifySeller } from '../middleware/authMiddleware.js';
-import {
-    createItem,
-    getItems,
-    getItem,
-    deleteItem,
-    editItem
-} from '../controllers/itemController.js';
-
+const express = require('express');
+const { body } = require('express-validator');
+const auth = require('../middleware/authMiddleware');
+const itemController = require('../controllers/itemController');
 
 const router = express.Router();
 
-router.post('/create-item', verifySeller,
+router.post('/create-item', auth.verifySeller,
     [
         body("title", "Title needs to be 4 character long")
             .trim()
@@ -20,13 +13,13 @@ router.post('/create-item', verifySeller,
         body("description", "Description must not be empty")
             .trim().not().isEmpty(),
         body("price", "Price must not be empty").trim().not().isEmpty()
-    ], createItem);
+    ], itemController.createItem);
 
-router.get('/get-items', verifySeller, getItems);
+router.get('/get-items', auth.verifySeller, itemController.getItems);
 
-router.get('/get-item/:itemId', verifySeller, getItem);
+router.get('/get-item/:itemId', auth.verifySeller, itemController.getItem);
 
-router.put('/edit-item/:itemId', verifySeller,
+router.put('/edit-item/:itemId', auth.verifySeller,
     [
         body("title", "Title needs to be 4 character long")
             .trim()
@@ -34,8 +27,8 @@ router.put('/edit-item/:itemId', verifySeller,
         body("description", "Description must not be empty")
             .trim().not().isEmpty(),
         body("price", "Price must not be empty").trim().not().isEmpty()
-    ], editItem);
+    ], itemController.editItem);
 
-router.delete('/delete-item/:itemId', verifySeller, deleteItem);
+router.delete('/delete-item/:itemId', auth.verifySeller, itemController.deleteItem);
 
-export default router;
+module.exports = router;

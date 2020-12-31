@@ -1,10 +1,10 @@
-import Account from '../models/accountModel.js';
-import Seller from '../models/sellerModel.js';
-import Item from '../models/itemModel.js';
+const Item = require('../models/itemModel');
+const Account = require('../models/accountModel');
+const Seller = require('../models/sellerModel');
 
-import { validationResult } from 'express-validator';
+const { validationResult } = require('express-validator');
 
-const createItem = (req, res, error) => {
+exports.createItem = (req, res, error) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -56,7 +56,7 @@ const createItem = (req, res, error) => {
         })
 }
 
-const getItems = (req, res, next) => {
+exports.getItems = (req, res, next) => {
     Account.findById(req.loggedInUserId)
         .then(account => {
             return Seller.findOne({ account: account._id })
@@ -75,7 +75,7 @@ const getItems = (req, res, next) => {
         })
 }
 
-const getItem = (req, res, next) => {
+exports.getItem = (req, res, next) => {
     const itemId = req.params.itemId;
     Item.findById(itemId)
         .then(item => {
@@ -94,7 +94,7 @@ const getItem = (req, res, next) => {
         })
 }
 
-const editItem = (req, res, next) => {
+exports.editItem = (req, res, next) => {
     const itemId = req.params.itemId;
     const errors = validationResult(req);
 
@@ -136,7 +136,7 @@ const editItem = (req, res, next) => {
         })
 }
 
-const deleteItem = (req, res, next) => {
+exports.deleteItem = (req, res, next) => {
     const itemId = req.params.itemId;
     Item.findById(itemId)
         .then(item => {
@@ -168,5 +168,3 @@ const deleteItem = (req, res, next) => {
             next(err);
         })
 }
-
-export { createItem, getItems, getItem, editItem, deleteItem }

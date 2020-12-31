@@ -1,13 +1,13 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import connectDb from './config/db.js';
-import path from 'path';
-import multer from 'multer';
-import dotenv from 'dotenv';
-import colors from 'colors';
+const express = require('express');
+const bodyParser = require('body-parser');
+const connectDb = require('./config/db');
+const path = require('path');
+const multer = require('multer');
+const dotenv = require('dotenv');
+const colors = require('colors');
 
-import authRoutes from './routes/authRoutes.js';
-import itemRoutes from './routes/itemRoutes.js';
+const authRoutes = require('./routes/authRoutes');
+const itemRoutes = require('./routes/itemRoutes');
 
 dotenv.config();
 
@@ -35,8 +35,6 @@ const fileFilter = (req, file, cb) => {
         cb(null, false)
     }
 }
-
-const __dirname = path.resolve();
 
 app.use(bodyParser.json());
 app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));

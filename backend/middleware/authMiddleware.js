@@ -1,6 +1,5 @@
-import jwt from 'jsonwebtoken';
-
-import Account from '../models/accountModel.js';
+const jwt = require('jsonwebtoken');
+const Account = require('../models/accountModel');
 
 const verifyToken = (req, res) => {
     const authHeader = req.get('Authorization');
@@ -21,7 +20,7 @@ const verifyToken = (req, res) => {
     return decodedToken.accountId
 }
 
-const verifySeller = (req, res, next) => {
+exports.verifySeller = (req, res, next) => {
     const accountId = verifyToken(req, res);
 
     Account.findById(accountId)
@@ -48,7 +47,7 @@ const verifySeller = (req, res, next) => {
         })
 }
 
-const verifyUser = (req, res, next) => {
+exports.verifyUser = (req, res, next) => {
     const accountId = verifyToken(req, res);
 
     Account.findById(accountId)
@@ -74,9 +73,4 @@ const verifyUser = (req, res, next) => {
             }
             next(err)
         })
-}
-
-export {
-    verifyUser,
-    verifySeller
 }
