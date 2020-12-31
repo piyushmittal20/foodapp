@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import path from 'path';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 import sendgridTransport from 'nodemailer-sendgrid-transport';
@@ -139,6 +140,12 @@ const signUpSeller = (req, res, next) => {
         error.errors = errors.array();
         throw error;
     }
+    if (!req.file) {
+        const error = new Error("No image provided!")
+        error.statusCode = 422;
+        throw error;
+    }
+    const imageUrl = ("/") + req.file.path.replace("\\", "/");
     const email = req.body.email;
     const name = req.body.name;
     const password = req.body.password;
@@ -146,7 +153,6 @@ const signUpSeller = (req, res, next) => {
     const role = req.body.role;
     const minOrderAmount = req.body.minOrderAmount;
     const costForOne = req.body.costForOne;
-    const imageUrl = req.body.imageUrl;
     const street = req.body.street;
     const aptName = req.body.aptName;
     const locality = req.body.locality;

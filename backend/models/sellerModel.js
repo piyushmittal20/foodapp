@@ -27,10 +27,12 @@ const sellerSchema = new mongoose.Schema({
     minOrderAmount: Number,
     costForOne: Number,
     account: { type: Schema.Types.ObjectId, required: true, ref: "Account" },
-    items: {
-        type: Schema.Types.ObjectId,
-        ref: 'Item'
-    }
+    items: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Item'
+        }
+    ]
 },
     {
         timestamps: true
