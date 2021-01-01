@@ -1,8 +1,7 @@
-import express from 'express';
-import Account from '../models/accountModel.js';
-
-import { signUpUser, login, signUpSeller, verifyingAcc } from '../controllers/authController.js';
-import { body } from 'express-validator';
+const express = require('express');
+const Account = require('../models/accountModel');
+const { body } = require('express-validator');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -30,7 +29,7 @@ router.post('/signupUser',
                 }
                 return true;
             })
-    ], signUpUser);
+    ], authController.signUpUser);
 
 router.post('/login',
     [
@@ -40,7 +39,7 @@ router.post('/login',
         body('password', 'Password must not be empty')
             .not()
             .isEmpty()
-    ], login);
+    ], authController.login);
 
 router.post('/signUpSeller',
     [
@@ -81,8 +80,8 @@ router.post('/signUpSeller',
         body('phoneNo', 'Enter a 10 digit valid phone number')
             .trim()
             .isLength({ min: 10, max: 10 })
-    ], signUpSeller);
+    ], authController.signUpSeller);
 
-router.get('/verifyAcc/:token', verifyingAcc);
+router.get('/verifyAcc/:token', authController.verifyingAcc);
 
-export default router;
+module.exports = router;

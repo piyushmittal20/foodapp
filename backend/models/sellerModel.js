@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const addressInfo = {
@@ -27,16 +26,16 @@ const sellerSchema = new mongoose.Schema({
     minOrderAmount: Number,
     costForOne: Number,
     account: { type: Schema.Types.ObjectId, required: true, ref: "Account" },
-    items: {
-        type: Schema.Types.ObjectId,
-        ref: 'Item'
-    }
+    items: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Item'
+        }
+    ]
 },
     {
         timestamps: true
     }
 )
 
-const Seller = mongoose.model('Seller', sellerSchema);
-
-export default Seller;
+module.exports = mongoose.model('Seller', sellerSchema);

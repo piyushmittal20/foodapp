@@ -1,13 +1,14 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import crypto from 'crypto';
-import nodemailer from 'nodemailer';
-import sendgridTransport from 'nodemailer-sendgrid-transport';
-import { validationResult } from 'express-validator';
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const path = require('path');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+const { validationResult } = require('express-validator');
 
-import User from '../models/userModel.js';
-import Account from '../models/accountModel.js';
-import Seller from '../models/sellerModel.js';
+const User = require('../models/userModel');
+const Account = require('../models/accountModel');
+const Seller = require('../models/sellerModel');
 
 const transporter = nodemailer.createTransport(
     sendgridTransport({
@@ -17,7 +18,7 @@ const transporter = nodemailer.createTransport(
     })
 );
 
-const signUpUser = (req, res, next) => {
+exports.signUpUser = (req, res, next) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -81,7 +82,7 @@ const signUpUser = (req, res, next) => {
         })
 };
 
-const login = (req, res, next) => {
+exports.login = (req, res, next) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -130,7 +131,7 @@ const login = (req, res, next) => {
         })
 }
 
-const signUpSeller = (req, res, next) => {
+exports.signUpSeller = (req, res, next) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -139,6 +140,12 @@ const signUpSeller = (req, res, next) => {
         error.errors = errors.array();
         throw error;
     }
+    if (!req.file) {
+        const error = new Error("No image provided!")
+        error.statusCode = 422;
+        throw error;
+    }
+    const imageUrl = ("/") + req.file.path.replace("\\", "/");
     const email = req.body.email;
     const name = req.body.name;
     const password = req.body.password;
@@ -146,7 +153,6 @@ const signUpSeller = (req, res, next) => {
     const role = req.body.role;
     const minOrderAmount = req.body.minOrderAmount;
     const costForOne = req.body.costForOne;
-    const imageUrl = req.body.imageUrl;
     const street = req.body.street;
     const aptName = req.body.aptName;
     const locality = req.body.locality;
@@ -206,7 +212,7 @@ const signUpSeller = (req, res, next) => {
         })
 }
 
-const verifyingAcc = (req, res, next) => {
+exports.verifyingAcc = (req, res, next) => {
     const token = req.params.token;
     Account.findOne({
         accountVerifyToken: token,
@@ -233,11 +239,4 @@ const verifyingAcc = (req, res, next) => {
             }
             next(err);
         })
-}
-
-export {
-    signUpUser,
-    login,
-    signUpSeller,
-    verifyingAcc
 }

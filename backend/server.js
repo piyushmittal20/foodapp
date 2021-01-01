@@ -1,10 +1,13 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import connectDb from './config/db.js';
-import dotenv from 'dotenv';
-import colors from 'colors';
+const express = require('express');
+const bodyParser = require('body-parser');
+const connectDb = require('./config/db');
+const path = require('path');
+const multer = require('multer');
+const dotenv = require('dotenv');
+const colors = require('colors');
 
-import authRoutes from './routes/authRoutes.js';
+const authRoutes = require('./routes/authRoutes');
+const itemRoutes = require('./routes/itemRoutes');
 
 dotenv.config();
 
@@ -12,9 +15,33 @@ connectDb();
 
 const app = express();
 
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, images)
+    },
+    filename: (req, file, cb) => {
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
+    }
+})
+
+const fileFilter = (req, file, cb) => {
+    if (
+        file.mimetype === 'image/jpg' ||
+        file.mimetype === 'image/png' ||
+        file.mimetype === 'image/jpeg'
+    ) {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+}
+
 app.use(bodyParser.json());
+app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
+app.use('/images', express.static(path.join(__dirname, '/images')));
 
 app.use('/auth', authRoutes);
+app.use('/seller', itemRoutes);
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
